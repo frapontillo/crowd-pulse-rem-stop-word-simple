@@ -21,6 +21,7 @@ import com.github.frapontillo.pulse.crowd.data.entity.Message;
 import com.github.frapontillo.pulse.crowd.data.entity.Tag;
 import com.github.frapontillo.pulse.crowd.data.entity.Token;
 import com.github.frapontillo.pulse.crowd.remstopword.StopWordRemover;
+import com.github.frapontillo.pulse.spi.IPlugin;
 import org.apache.commons.io.IOUtils;
 
 import java.util.*;
@@ -56,6 +57,10 @@ public class SimpleStopWordRemover extends StopWordRemover<StopWordConfig> {
 
     @Override public String getName() {
         return PLUGIN_NAME;
+    }
+
+    @Override public IPlugin<Message, Message, StopWordConfig> getInstance() {
+        return new SimpleStopWordRemover();
     }
 
     @Override public StopWordConfig getNewParameter() {
